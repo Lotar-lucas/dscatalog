@@ -3,12 +3,11 @@ package com.lotar.dev.dscatalog.services;
 import com.lotar.dev.dscatalog.dto.CategoryDTO;
 import com.lotar.dev.dscatalog.entities.Category;
 import com.lotar.dev.dscatalog.repositories.CategoryRepository;
-import com.lotar.dev.dscatalog.services.exeptions.EntityNotFoundException;
+import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -35,5 +34,17 @@ public class CategoryService {
     entity.setName(dto.getName());
     entity =  categoryRepository.save(entity);
     return new CategoryDTO(entity);
+  }
+
+  @Transactional
+  public CategoryDTO update(Long id ,CategoryDTO dto) {
+    try {
+      Category entity = categoryRepository.getReferenceById(id);
+      entity.setName(dto.getName());
+      entity =  categoryRepository.save(entity);
+      return new CategoryDTO(entity);
+    } catch (EntityNotFoundException e) {
+      throw new EntityNotFoundException("Category not found with id " + id);
+    }
   }
 }

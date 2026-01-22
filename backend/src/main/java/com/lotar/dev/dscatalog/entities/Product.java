@@ -90,4 +90,25 @@ public class Product {
     return Objects.hashCode(getId());
   }
 
+  public void setDescription(String description) {
+    this.description = description;
+  }
+
+  public void setPrice(Double price) {
+    this.price = price;
+  }
+
+  public void setImgUrl(String imgUrl) {
+    this.imgUrl = imgUrl;
+  }
+
+  public void setDate(Instant date) {
+    this.date = date;
+  }
+
+  public void setName(String name) {
+    this.name = name;
+  }
+
+
 }

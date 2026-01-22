@@ -74,6 +74,10 @@ public class Product {
     return date;
   }
 
+  public Set<Category> getCategories() {
+    return categories;
+  }
+
   @Override
   public boolean equals(Object o) {
     if (o == null || getClass() != o.getClass()) return false;
@@ -85,4 +89,5 @@ public class Product {
   public int hashCode() {
     return Objects.hashCode(getId());
   }
+
 }
